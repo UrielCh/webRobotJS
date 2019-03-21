@@ -1,0 +1,28 @@
+{
+  "name": "webrobotjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "zService.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UrielCh/webRobotJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UrielCh/webRobotJS/issues"
+  },
+  "homepage": "https://github.com/UrielCh/webRobotJS#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "delay": "^4.1.0",
+    "express": "^4.16.4",
+    "log4js": "^4.0.2",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "robotjs": "git+https://git@github.com/UrielCh/robotjs.git"
+  }
+}
