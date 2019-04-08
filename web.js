@@ -33,7 +33,52 @@ const express = require('express')
 const app = express()
 app.use(require('body-parser').json())
 
-app.get('/', (req, res) => res.json({ message: 'Hello World!' }))
+app.get('/', (req, res) => res.send(`<html>
+<header>zService</header>
+<body>
+<pre>
+usage:
+
+GET /kill : stop the service
+
+POST /control-mouse : create mouse event
+    {
+        "mode": "move"|"move_click"|"click",
+        "x": number,
+        "y": number,
+        "smooth": boolean,
+    }
+    or
+    {
+        "mode": "drag"
+        "start_x": number,
+        "start_y": number,
+        "end_x": number,
+        "end_y": number,
+    }
+    or
+    {
+        "mode": "scroll"
+        "amount": number,
+    }
+
+POST /keypress:
+    {
+        key: string,
+        flag: "shift"|,
+    }
+
+POST /control-keyboard:
+    {
+        "mode": "key"
+    }
+    or
+    {
+        "mode": "paste"|"f[1-12]"|"backspace"|"delete" ...
+    }
+</pre>
+</body>
+</html>`))
 // app.listen(3000, () => console.log('Example app listening on port 3000!'))
 
 const robot = require('robotjs')
@@ -96,6 +141,7 @@ app.post('/keypress', (req, res) => {
 
 // curl --header "Content-Type: application/json"  --data '{"mode":"key","data":{"input":"@"}}' -X POST http://127.0.0.1:9000/control-keyboard
 // curl --header "Content-Type: application/json"  --data '{"mode":"arobase"}' -X POST http://127.0.0.1:9000/control-keyboard
+// curl --header "Content-Type: application/json"  --data '{"mode":"key","data":{"input":"T@TO"}}' -X POST http://127.0.0.1:9000/control-keyboard
 app.post('/control-keyboard', (req, res) => {
     const { mode, data } = req.body
     if (mode === 'simulate_keyboard' || mode === 'keyboard' || mode === 'key') {
@@ -113,10 +159,10 @@ app.post('/control-keyboard', (req, res) => {
     // clipboard.copy(input_txt)
     // return res.json({message:'ok'});
     // }
-    if (mode === 'arobase') {
-        robot.keyTap('2', 'shift')
-        return res.json({ message: 'ok' })
-    }
+    //if (mode === 'arobase') {
+    //    robot.keyTap('2', 'shift')
+    //    return res.json({ message: 'ok' })
+    //}
     if (mode === 'paste') {
         robot.keyTap('v', 'control')
         return res.json({ message: 'ok' })
@@ -176,3 +222,4 @@ app.post('/control-keyboard', (req, res) => {
 })
 
 module.exports = app
+
