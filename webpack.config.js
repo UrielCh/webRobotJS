@@ -4,7 +4,7 @@ module.exports = {
   mode: "production",
   entry: './zService.js',
   output: {
-    filename: 'webRobotJS.js',
+    filename: 'main.js',
     // path: path.resolve(__dirname, 'dist')
   },
   module: {
