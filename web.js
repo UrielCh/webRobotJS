@@ -7,6 +7,7 @@
 
 // var http = require('http');
 
+/*
 var log4js = require('log4js')
 log4js.configure({
     appenders: {
@@ -26,9 +27,7 @@ log4js.configure({
         }
     }
 })
-
-// var logger = log4js.getLogger('webserver');
-
+*/ 
 const express = require('express')
 const app = express()
 app.use(require('body-parser').json())
@@ -140,7 +139,6 @@ app.post('/keypress', (req, res) => {
 })
 
 // curl --header "Content-Type: application/json"  --data '{"mode":"key","data":{"input":"@"}}' -X POST http://127.0.0.1:9000/control-keyboard
-// curl --header "Content-Type: application/json"  --data '{"mode":"arobase"}' -X POST http://127.0.0.1:9000/control-keyboard
 // curl --header "Content-Type: application/json"  --data '{"mode":"key","data":{"input":"T@TO"}}' -X POST http://127.0.0.1:9000/control-keyboard
 app.post('/control-keyboard', (req, res) => {
     const { mode, data } = req.body

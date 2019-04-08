@@ -11,7 +11,6 @@ const delay = require('delay');
 
 let servicePort = 9000;
 
-
 if (servicePort > 0) {
   console.log('Try to kill old service on port', servicePort)
   rp(`http://127.0.0.1:${servicePort}/kill`)
