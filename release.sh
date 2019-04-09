@@ -1,4 +1,5 @@
 #!/bin/sh
+set -ex
 output=roboJsWeb-$(uname -m)-node-$(node --version | cut -d. -f1);
 PRJ_HOME=$(pwd)
 
