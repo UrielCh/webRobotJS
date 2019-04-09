@@ -11,7 +11,9 @@ echo Starting webpack
 echo webpack done building tar.gz
 cp "${PRJ_HOME}"/node_modules/robotjs/build/Release/robotjs.node dist/;
 cd dist
-sed -i s@\""${PRJ_HOME}"/node_modules/robotjs/build/Release/robotjs.node\"@require'("path").resolve(__dirname,"robotjs.node")'@ main.js;
-sed -i s@"${PRJ_HOME}"/node_modules/robotjs/build/Release/@__dirname+@ main.js;
+cat main.js | \
+ sed s@\""${PRJ_HOME}"/node_modules/robotjs/build/Release/robotjs.node\"@require'("path").resolve(__dirname,"robotjs.node")'@ |
+ sed s@"${PRJ_HOME}"/node_modules/robotjs/build/Release/@__dirname+@ > main2.js
+mv main2.js main.js
 tar -cvzf $output.tar.gz main.js robotjs.node;
 
