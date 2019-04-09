@@ -1,10 +1,10 @@
 #!/bin/sh
-set -ex
+set -e
 output=roboJsWeb-$(uname -m)-node-$(node --version | cut -d. -f1);
 PRJ_HOME=$(pwd)
 
 echo building $output
-rm -rf node_modules main.js;
+rm -rf node_modules dist/main.js dist/robotjs.node;
 npm install;
 echo Starting webpack
 ./node_modules/.bin/webpack;
