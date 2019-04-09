@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-output=roboJsWeb-$(uname -m)-node-$(node --version | cut -d. -f1);
+output=robotJsWeb-$(uname -m)-node-$(node --version | cut -d. -f1);
 PRJ_HOME=$(pwd)
 
 echo building $output
