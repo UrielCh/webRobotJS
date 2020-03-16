@@ -90,6 +90,8 @@ app.get('/kill', (req, res) => {
 app.get('/control-mouse', (req, res) => res.status(500).json({ error: 'Missing POST data' }))
 app.post('/control-mouse', (req, res) => {
     const { mode, data } = req.body
+    robot.updateScreenMetrics();
+
     console.log(mode, data)
     if (mode === 'set_mouse_position' || mode === 'move') {
         const { x, y, smooth } = data
