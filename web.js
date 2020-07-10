@@ -45,6 +45,7 @@ POST /control-mouse : create mouse event
         "mode": "move"|"move_click"|"click",
         "x": number,
         "y": number,
+        "speed": number, /* default is 3.0 */
         "smooth": boolean,
     }
     or
@@ -95,18 +96,20 @@ app.post('/control-mouse', (req, res) => {
     console.log(mode, data)
     if (mode === 'set_mouse_position' || mode === 'move') {
         const { x, y, smooth } = data
+        let speed = data.speed | 3.0;
         let time = 0;
         if (smooth)
-            time = robot.moveMouseSmooth(x, y)
+            time = robot.moveMouseSmooth(x, y, speed)
         else
             robot.moveMouse(x, y)
         return res.json({ message: 'ok', time })
     }
     if (mode === 'click_mouse_position' || mode === 'move_click') {
         const { x, y, smooth } = data
+        let speed = data.speed | 3.0;
         let time = 0;
         if (smooth)
-            time = robot.moveMouseSmooth(x, y)
+            time = robot.moveMouseSmooth(x, y, speed)
         else
             robot.moveMouse(x, y)
         robot.mouseClick()
